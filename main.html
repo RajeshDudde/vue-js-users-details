@@ -1,0 +1,99 @@
+<html>
+    <head>
+    <title>users data</title>
+    <meta name="description" content="display user data using vue">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  </head>
+    <body>
+      <div id="app" class="members">
+        <div  v-if="loading" >
+          <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+                                              </div>
+           </div>
+           <P v-if="errorMessage!=''">{{errorMessage}}</P>
+           <div class="member-details" v-else  v-for="data in data">
+      
+         
+          <img class="member-avatar":src="`https://avatars.dicebear.com/v2/avataaars/+${data.username}+.svg?options[mood][]=happy`"/> 
+      
+            <div class="members-info">
+            <spam class="user-name">{{data.name}}</spam>
+            <!-- <spam class="user-email"> -->
+              <i class="fa fa-envelope-o" id="email" aria-hidden="true">{{data.email}}</i>
+            <!-- </spam> -->
+            <!-- <spam class="user-phone"> -->
+              <i class="fa fa-phone" id="phone" aria-hidden="true">{{data.phone}}</i>
+            <!-- </spam> -->
+            <!-- <spam class="user-website"> -->
+              <i class="fa fa-globe" id="web">{{data.website}}</i>
+            <!-- </spam> -->
+            </div>
+            <div class="button-div">
+              <!-- :class="{active:data.selected}"
+              @click="select(data)"
+             :style="{color: data.selected ? 'grey':'red'}" -->
+             <i  id="buttons"
+              class="fa fa-heart-o" 
+              :class="{active:data.selected}"
+              @click="select(data)"
+              aria-hidden="true"></i>
+              <i class="fa fa-pencil-square-o" id="buttons" @click="edit(data)" aria-hidden="true"></i>
+              <i class="fa fa-trash" id="buttons"  @click="del(data.id)" aria-hidden="true" ></i>
+          </div>
+        </div> 
+        <div class="edit" v-if="editable">
+         
+            <button type="button" class="close-div" aria-label="Close" @click="close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div  class="form">
+          
+              <legend > edit  data</legend>
+              <p class="para">
+              <label class="required" >Name:</label>
+              <input type="text" id="i" v-model="name">
+              </p>
+              <br/>
+              <p class="para">
+              <label class="required">email:</label>
+              <input type="text" id="i" v-model="email">
+              </p>
+              <br/>
+              <p class="para">
+              <label class="required">phone:</label>
+              <input type="text" id="i" v-model="phone">
+              </p>
+              <br/>
+              <p class="para">
+              <label class="required">website:</label>
+              <input type="text"id="i" v-model="website">
+              </p>
+              <br/>
+              <p class="para">
+             <label  class="f"></label>
+              <button class="button"  @click="cancel">cancel</button>
+              <button   class="button" @click="save(objdata)"> ok</button>
+              </p>
+            </div>
+        </div>
+      
+      <script src="https://unpkg.com/vue@next"></script>
+      <script src="app.js"></script>
+    </body>
+</html>
